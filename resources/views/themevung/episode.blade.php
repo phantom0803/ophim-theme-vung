@@ -154,9 +154,9 @@
                 <div class="modal-body" id="p_content">
                     <p class="alert-danger" id="show_msg"></p>
                     <div class="form-group">
-                        <label for="log_des">Báo lỗi phim "7 Ngày Làm Vương Hậu (Queen For Seven Days) (2017)"</label>
+                        <label for="log_des">Báo lỗi phim "{{ $currentMovie->name }} ({{ $currentMovie->origin_name }}) ({{ $currentMovie->publish_year }})"</label>
                         <textarea name="log_des" id="log_des" class="form-control" style="width:100%; height: 50px;"
-                            placeholder="Mô tả lỗi phim 7 Ngày Làm Vương Hậu (Queen For Seven Days) (2017)"></textarea>
+                            placeholder="Mô tả lỗi phim {{ $currentMovie->name }} ({{ $currentMovie->origin_name }}) ({{ $currentMovie->publish_year }})"></textarea>
                     </div>
                     <a href="javascript:;" class="btn btn-primary" name="but_send_report" id="but_send_report">Gửi</a>
                 </div>
