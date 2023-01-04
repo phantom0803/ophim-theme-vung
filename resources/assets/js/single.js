@@ -11,7 +11,7 @@ $(document).ready(function () {
             if ($(this).attr('data-height')) {
                 vidHeight = parseInt($(this).attr('data-height'));
             }
-            var iFrameCode = '<iframe width="' + vidWidth + '" height="' + vidHeight + '" scrolling="no" allowtransparency="true" allowfullscreen="true" src="http://www.youtube.com/embed/' + youtubeId[1] + '?rel=0&wmode=transparent&showinfo=0&hd=1" frameborder="0"></iframe>';
+            var iFrameCode = '<iframe width="' + vidWidth + '" height="' + vidHeight + '" scrolling="no" allowtransparency="true" allowfullscreen="true" src="https://www.youtube.com/embed/' + youtubeId[1] + '?rel=0&wmode=transparent&showinfo=0&hd=1" frameborder="0"></iframe>';
             $('#mediaModal .modal-body').html(iFrameCode);
             $('#mediaModal').on('show.bs.modal', function () {
                 var modalBody = $(this).find('.modal-body');
@@ -36,7 +36,7 @@ $(document).ready(function () {
             if ($(this).attr('data-height')) {
                 vidHeight = parseInt($(this).attr('data-height'));
             }
-            var iFrameCode = '<iframe width="' + vidWidth + '" height="' + vidHeight + '" scrolling="no" allowtransparency="true" allowfullscreen="true" src="http://www.youtube.com/embed/' + youtubeId[1] + '?rel=0&wmode=transparent&showinfo=0&hd=1" frameborder="0"></iframe>';
+            var iFrameCode = '<iframe width="' + vidWidth + '" height="' + vidHeight + '" scrolling="no" allowtransparency="true" allowfullscreen="true" src="https://www.youtube.com/embed/' + youtubeId[1] + '?rel=0&wmode=transparent&showinfo=0&hd=1" frameborder="0"></iframe>';
             $('#mediaModal .modal-body').html(iFrameCode);
             $('#mediaModal').on('show.bs.modal', function () {
                 var modalBody = $(this).find('.modal-body');
