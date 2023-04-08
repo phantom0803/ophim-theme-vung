@@ -5,7 +5,7 @@
         <li>
             <a href="{{$movie->getUrl()}}">
                 <div class="image"
-                    style="background-image:url({{$movie->poster_url ?: $movie->thumb_url}})">
+                    style="background-image:url({{$movie->getPosterUrl()}})">
                 </div>
                 <div class="info">
                     <b class="title-phim">{{$movie->name}} <br /> {{$movie->origin_name}} ({{$movie->publish_year}})</b>

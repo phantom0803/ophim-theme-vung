@@ -1,6 +1,6 @@
 <a href="{{$movie->getUrl()}}" class="col-xs-4 col-lg-2 film-small">
     <div class="poster-film-small"
-        style="background-image:url('{{$movie->thumb_url}}')">
+        style="background-image:url('{{$movie->getThumbUrl()}}')">
         @if ($movie->type == 'series')
             <div class="sotap">{{$movie->episode_current}}</div>
         @endif

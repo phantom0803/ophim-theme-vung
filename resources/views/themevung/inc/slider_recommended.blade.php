@@ -8,7 +8,7 @@
         @foreach ($recommendations as $movie)
         <div class="item">
             <a href="{{$movie->getUrl()}}"
-                style="background-image:url({{$movie->thumb_url}})">
+                style="background-image:url({{$movie->getThumbUrl()}})">
                 <div class="black-gradient">
                     <b class="title-film">{{$movie->name}}</b>
                     <p>{{$movie->origin_name}} ({{$movie->publish_year}})</p>

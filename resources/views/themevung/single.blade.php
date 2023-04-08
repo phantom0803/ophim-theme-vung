@@ -25,15 +25,6 @@
                 <i class="fa fa-angle-right"></i>
                 <meta itemprop="position" content="1" />
             </li>
-            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                <a itemprop="item" itemprop="url"
-                    href="{{route('types.movies.index', ['type' => $currentMovie->type == 'single' ? 'phim-le' : 'phim-bo'])}}"
-                    title="{{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}">
-                    <span itemprop="name"> {{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}</span>
-                </a>
-                <i class="fa fa-angle-right"></i>
-                <meta itemprop="position" content="2" />
-            </li>
             <li>
                 <a href="javascript:;" class="active">{{$currentMovie->name}}</a>
             </li>
@@ -42,14 +33,14 @@
     <div class="group-detail" itemscope itemtype="http://schema.org/Movie">
         <div style="display: none">
             <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                <span itemprop="ratingValue">{{ number_format($currentMovie->rating_start, 1) }}</span>
+                <span itemprop="ratingValue">{{$currentMovie->getRatingStar()}}</span>
                 <meta itemprop="bestRating" content="10" />
                 <meta itemprop="worstRating" content="1" />
-                <span itemprop="ratingCount">{{ $currentMovie->rating_count ?: 0 }}</span>
+                <span itemprop="ratingCount">{{$currentMovie->getRatingCount()}}</span>
             </div>
         </div>
         <a href="{{ $watch_url }}" class="big-img-film-detail {{ !$watch_url ? 'comingsoon' : '' }}">
-            <img src="{{ $currentMovie->poster_url ?: '/themes/vung/img/big-img-detail.jpg' }}"
+            <img src="{{ $currentMovie->getPosterUrl() ?: '/themes/vung/img/big-img-detail.jpg' }}"
                 style="position: absolute; width: 100%; height: 100%" />
             <div style="position: absolute; width: 100%; height: 100%">
                 <i class="fa fa-play-circle" aria-hidden="true"></i>
@@ -63,11 +54,11 @@
             </div>
             <div class="g-plusone" data-size="medium"></div>
         </div>
-        <div class="imdb">Điểm {{ number_format($currentMovie->rating_star, 1) }}</div>
+        <div class="imdb">Điểm {{$currentMovie->getRatingStar()}}</div>
         <ul class="rated-star hidden-xs">
             <i id="star"></i>
         </ul>
-        <span class="rated-text">({{ $currentMovie->rating_count }} Đánh giá)</span>
+        <span class="rated-text">({{$currentMovie->getRatingCount()}} Đánh giá)</span>
         <span class="hd">{{ $currentMovie->quality }}</span>
         <br>
         @if ($watch_url)
@@ -178,7 +169,7 @@
 
 @push('scripts')
     <script>
-        var rating = '{{ number_format($currentMovie->rating_star) }}';
+        var rating = '{{$currentMovie->getRatingStar()}}';
         var URL_POST_RATING = '{{ route('movie.rating', ['movie' => $currentMovie->slug]) }}';
     </script>
     <script defer type="text/javascript" src="/themes/vung/js/rating.js"></script>

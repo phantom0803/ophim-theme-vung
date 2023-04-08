@@ -5,8 +5,8 @@
             <li>
                 <a href="{{$movie->getUrl()}}">
                     <div class="image"
-                        style="background-image:url({{$movie->poster_url ?: $movie->thumb_url}})">
-                    </div> <span class="imdb">Điểm <br> <b>{{ number_format($movie->rating_star ?: 8, 1) }}</b></span>
+                        style="background-image:url({{$movie->getPosterUrl()}})">
+                    </div> <span class="imdb">Điểm <br> <b>{{$movie->getRatingStar()}}</b></span>
                     <div class="info"> <b class="title-film">{{$movie->name}}</b>
                         <p>{{$movie->origin_name}} ({{$movie->publish_year}})</p>
                     </div>

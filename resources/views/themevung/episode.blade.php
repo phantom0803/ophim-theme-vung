@@ -11,15 +11,6 @@
                 <meta itemprop="position" content="1" />
             </li>
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                <a itemprop="item" itemprop="url"
-                    href="{{ route('types.movies.index', ['type' => $currentMovie->type == 'single' ? 'phim-le' : 'phim-bo']) }}"
-                    title="{{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}">
-                    <span itemprop="name"> {{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}</span>
-                </a>
-                <i class="fa fa-angle-right"></i>
-                <meta itemprop="position" content="2" />
-            </li>
-            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" itemprop="url" href="{{ $currentMovie->getUrl() }}" title="{{ $currentMovie->name }}">
                     <span itemprop="name"> {{ $currentMovie->name }}</span>
                 </a>
@@ -111,11 +102,11 @@
         </a>
     </div>
     <div class="group-detail ">
-        <div class="imdb">Điểm {{ number_format($currentMovie->rating_star, 1) }}</div>
+        <div class="imdb">Điểm {{$currentMovie->getRatingStar()}}</div>
         <ul class="rated-star hidden-xs">
             <i id="star"></i>
         </ul>
-        <span class="rated-text">({{ $currentMovie->rating_count }} Đánh giá)</span>
+        <span class="rated-text">({{$currentMovie->getRatingCount()}} Đánh giá)</span>
     </div>
 
     <div class="group-vote-detail">
@@ -165,7 +156,7 @@
     </div>
 
     <script>
-        var rating = '{{ number_format($currentMovie->rating_star) }}';
+        var rating = '{{$currentMovie->getRatingStar()}}';
         var URL_POST_RATING = '{{ route('movie.rating', ['movie' => $currentMovie->slug]) }}';
         var URL_POST_REPORT = '{{ route('episodes.report', ['movie' => $currentMovie->slug, 'episode' => $episode->slug, 'id' => $episode->id]) }}';
     </script>
@@ -269,7 +260,7 @@
                     key: "{{ Setting::get('jwplayer_license') }}",
                     aspectratio: "16:9",
                     width: "100%",
-                    image: "{{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}",
+                    image: "{{ $currentMovie->getPosterUrl() }}",
                     file: link,
                     playbackRateControls: true,
                     playbackRates: [0.25, 0.75, 1, 1.25],

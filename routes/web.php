@@ -15,14 +15,41 @@ Route::group([
     ),
 ], function () {
     Route::get('/', [ThemeVungController::class, 'index']);
-    Route::get(sprintf('/%s/{category}', config('ophim.routes.category', 'the-loai')), [ThemeVungController::class, 'getMovieOfCategory'])->name('categories.movies.index');
-    Route::get(sprintf('/%s/{actor}', config('ophim.routes.actors', 'dien-vien')), [ThemeVungController::class, 'getMovieOfActor'])->name('actors.movies.index');
-    Route::get(sprintf('/%s/{director}', config('ophim.routes.directors', 'dao-dien')), [ThemeVungController::class, 'getMovieOfDirector'])->name('directors.movies.index');
-    Route::get(sprintf('/%s/{tag}', config('ophim.routes.tags', 'tu-khoa')), [ThemeVungController::class, 'getMovieOfTag'])->name('tags.movies.index');
-    Route::get(sprintf('/%s/{region}', config('ophim.routes.region', 'quoc-gia')), [ThemeVungController::class, 'getMovieOfRegion'])->name('regions.movies.index');
-    Route::get(sprintf('/%s/{type}', config('ophim.routes.types', 'danh-sach')), [ThemeVungController::class, 'getMovieOfType'])->name('types.movies.index');
-    Route::get(sprintf('/%s/{movie}', config('ophim.routes.movie', 'phim')), [ThemeVungController::class, 'getMovieOverview'])->name('movies.show');
-    Route::get(sprintf('/%s/{movie}/{episode}', config('ophim.routes.movie', 'phim')), [ThemeVungController::class, 'getEpisode'])->name('episodes.show');
+
+    Route::get(setting('site_routes_category', '/the-loai/{category}'), [ThemeVungController::class, 'getMovieOfCategory'])
+        ->where(['category' => '.+', 'id' => '[0-9]+'])
+        ->name('categories.movies.index');
+
+    Route::get(setting('site_routes_region', '/quoc-gia/{region}'), [ThemeVungController::class, 'getMovieOfRegion'])
+        ->where(['region' => '.+', 'id' => '[0-9]+'])
+        ->name('regions.movies.index');
+
+    Route::get(setting('site_routes_tag', '/tu-khoa/{tag}'), [ThemeVungController::class, 'getMovieOfTag'])
+        ->where(['tag' => '.+', 'id' => '[0-9]+'])
+        ->name('tags.movies.index');
+
+    Route::get(setting('site_routes_types', '/danh-sach/{type}'), [ThemeVungController::class, 'getMovieOfType'])
+        ->where(['type' => '.+', 'id' => '[0-9]+'])
+        ->name('types.movies.index');
+
+    Route::get(setting('site_routes_actors', '/dien-vien/{actor}'), [ThemeVungController::class, 'getMovieOfActor'])
+        ->where(['actor' => '.+', 'id' => '[0-9]+'])
+        ->name('actors.movies.index');
+
+    Route::get(setting('site_routes_directors', '/dao-dien/{director}'), [ThemeVungController::class, 'getMovieOfDirector'])
+        ->where(['director' => '.+', 'id' => '[0-9]+'])
+        ->name('directors.movies.index');
+
+    Route::get(setting('site_routes_episode', '/phim/{movie}/{episode}-{id}'), [ThemeVungController::class, 'getEpisode'])
+        ->where(['movie' => '.+', 'movie_id' => '[0-9]+', 'episode' => '.+', 'id' => '[0-9]+'])
+        ->name('episodes.show');
+
     Route::post(sprintf('/%s/{movie}/{episode}/report', config('ophim.routes.movie', 'phim')), [ThemeVungController::class, 'reportEpisode'])->name('episodes.report');
     Route::post(sprintf('/%s/{movie}/rate', config('ophim.routes.movie', 'phim')), [ThemeVungController::class, 'rateMovie'])->name('movie.rating');
+
+    Route::get(setting('site_routes_movie', '/phim/{movie}'), [ThemeVungController::class, 'getMovieOverview'])
+        ->where(['movie' => '.+', 'id' => '[0-9]+'])
+        ->name('movies.show');
+
+
 });
